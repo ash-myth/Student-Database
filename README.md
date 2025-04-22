@@ -17,7 +17,7 @@ A simple database management system for student and faculty records using PHP an
 
 ## 🗂 Project Structure
 ```
-student-dbms/
+student-database/
 │
 ├── add_faculty.php        # Form to add faculty data
 ├── add_student.php        # Form to add student data
@@ -44,7 +44,7 @@ Update the database credentials in the PHP files (typically config.php or connec
 - Run the Application:
 Place the project folder in your web server's root directory (e.g., htdocs for XAMPP).
 Access the application via:
-http://localhost/student-dbms/control_panel.php
+http://localhost/student-database/control_panel.php
 
 ## 📋 Prerequisites
 
