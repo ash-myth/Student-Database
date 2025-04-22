@@ -46,9 +46,8 @@ Access the application via:
 http://localhost/student-dbms/control_panel.php
 
 ## 📋 Prerequisites
-```
+
 -Web server (Apache, Nginx, or XAMPP/WAMP/MAMP)
 -PHP (≥ 7.0 recommended)
 -MySQL (≥ 5.6)
 -Web browser (Chrome, Firefox, etc.)
-```
