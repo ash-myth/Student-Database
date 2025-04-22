@@ -31,9 +31,10 @@ student-dbms/
 ```
 ## ⚙️ Setup Instructions
 - Clone the repository:
+```
 git clone https://github.com/ash-myth/student-dbms.git
 cd student-dbms
-
+```
 - Database Setup:
 Create the database manually in MySQL using the schema in schema.sql.
 
