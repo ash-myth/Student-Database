@@ -30,17 +30,17 @@ student-dbms/
 └── .gitignore             # Ignored files config
 ```
 ## ⚙️ Setup Instructions
--Clone the repository:
+- Clone the repository:
 git clone https://github.com/ash-myth/student-dbms.git
 cd student-dbms
 
--Database Setup:
+- Database Setup:
 Create the database manually in MySQL using the schema in schema.sql.
 
--Configure Database Connection:
+- Configure Database Connection:
 Update the database credentials in the PHP files (typically config.php or connection scripts).
 
--Run the Application:
+- Run the Application:
 Place the project folder in your web server's root directory (e.g., htdocs for XAMPP).
 Access the application via:
 http://localhost/student-dbms/control_panel.php
