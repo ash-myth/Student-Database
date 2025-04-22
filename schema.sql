@@ -1,0 +1,94 @@
+CREATE DATABASE IF NOT EXISTS PBL;
+USE PBL;
+
+CREATE TABLE IF NOT EXISTS Department (
+    Department_ID INT PRIMARY KEY AUTO_INCREMENT,
+    Department_Name VARCHAR(100) NOT NULL,
+    HOD_ID INT UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS Faculty (
+    Faculty_ID INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) UNIQUE NOT NULL,
+    Phone VARCHAR(15) UNIQUE NOT NULL,
+    Department_ID INT,
+    FOREIGN KEY (Department_ID) REFERENCES Department(Department_ID) ON DELETE SET NULL
+);
+
+ALTER TABLE Department 
+ADD CONSTRAINT fk_hod 
+FOREIGN KEY (HOD_ID) REFERENCES Faculty(Faculty_ID) ON DELETE SET NULL;
+
+CREATE TABLE IF NOT EXISTS Student (
+    Student_ID INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(100) NOT NULL,
+    Date_of_Birth DATE NOT NULL,
+    Gender ENUM('Male', 'Female', 'Other') NOT NULL,
+    Email VARCHAR(100) UNIQUE NOT NULL,
+    Phone VARCHAR(15) UNIQUE NOT NULL,
+    Address TEXT,
+    Department_ID INT,
+    FOREIGN KEY (Department_ID) REFERENCES Department(Department_ID) ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS Course (
+    Course_ID INT PRIMARY KEY AUTO_INCREMENT,
+    Course_Name VARCHAR(100) NOT NULL,
+    Credits INT NOT NULL,
+    Department_ID INT,
+    Faculty_ID INT,
+    FOREIGN KEY (Department_ID) REFERENCES Department(Department_ID) ON DELETE CASCADE,
+    FOREIGN KEY (Faculty_ID) REFERENCES Faculty(Faculty_ID) ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS Enrollment (
+    Enrollment_ID INT PRIMARY KEY AUTO_INCREMENT,
+    Student_ID INT,
+    Course_ID INT,
+    Semester VARCHAR(10),
+    Year YEAR,
+    Grade VARCHAR(2),
+    FOREIGN KEY (Student_ID) REFERENCES Student(Student_ID) ON DELETE CASCADE,
+    FOREIGN KEY (Course_ID) REFERENCES Course(Course_ID) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Attendance (
+    Attendance_ID INT PRIMARY KEY AUTO_INCREMENT,
+    Student_ID INT,
+    Course_ID INT,
+    Date DATE NOT NULL,
+    Status ENUM('Present', 'Absent') NOT NULL,
+    FOREIGN KEY (Student_ID) REFERENCES Student(Student_ID) ON DELETE CASCADE,
+    FOREIGN KEY (Course_ID) REFERENCES Course(Course_ID) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Marks (
+    Marks_ID INT PRIMARY KEY AUTO_INCREMENT,
+    Student_ID INT,
+    Course_ID INT,
+    Exam_Type ENUM('Midterm', 'Final', 'Quiz', 'Assignment') NOT NULL,
+    Marks_Obtained INT NOT NULL,
+    Total_Marks INT NOT NULL,
+    FOREIGN KEY (Student_ID) REFERENCES Student(Student_ID) ON DELETE CASCADE,
+    FOREIGN KEY (Course_ID) REFERENCES Course(Course_ID) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Library (
+    Book_ID INT PRIMARY KEY AUTO_INCREMENT,
+    Book_Name VARCHAR(255) NOT NULL,
+    Author VARCHAR(100) NOT NULL,
+    ISBN VARCHAR(20) UNIQUE NOT NULL,
+    Department_ID INT,
+    FOREIGN KEY (Department_ID) REFERENCES Department(Department_ID) ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS Library_Issued (
+    Issue_ID INT PRIMARY KEY AUTO_INCREMENT,
+    Student_ID INT,
+    Book_ID INT,
+    Issue_Date DATE NOT NULL,
+    Return_Date DATE,
+    FOREIGN KEY (Student_ID) REFERENCES Student(Student_ID) ON DELETE CASCADE,
+    FOREIGN KEY (Book_ID) REFERENCES Library(Book_ID) ON DELETE CASCADE
+);
