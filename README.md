@@ -17,7 +17,7 @@ A simple database management system for student and faculty records using PHP an
 
 ## 🗂 Project Structure
 ```
-student-database/
+student-dbms/
 │
 ├── add_faculty.php        # Form to add faculty data
 ├── add_student.php        # Form to add student data
@@ -32,7 +32,7 @@ student-database/
 ## ⚙️ Setup Instructions
 - Clone the repository:
 ```
-git clone https://github.com/ash-myth/student-database.git
+git clone https://github.com/ash-myth/student-dbms.git
 cd student-database
 ```
 - Database Setup:
@@ -44,7 +44,7 @@ Update the database credentials in the PHP files (typically config.php or connec
 - Run the Application:
 Place the project folder in your web server's root directory (e.g., htdocs for XAMPP).
 Access the application via:
-http://localhost/student-database/control_panel.php
+http://localhost/student-dbms/control_panel.php
 
 ## 📋 Prerequisites
 
